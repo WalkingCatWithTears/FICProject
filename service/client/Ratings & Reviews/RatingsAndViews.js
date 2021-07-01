@@ -17,24 +17,26 @@ function RatingsAndViews() {
         })
     }, [productId])
    
+  
     return (
     <> 
  
     <h1 className="flex px-16 font-mono ">RATINGS & REVIEWS</h1>
     <div className="flex px-16 py-3 justify-between ">
-      <section>
+      <section className="pr-10"> 
         <ViewRatingStars productInfo = {productInfo.results}/>
-        <p className="flex py-5"> {pourcentatgeOfRecommendedReviews}% of the reviews recommend this product</p>
+        <p className="flex py-5 "> {pourcentatgeOfRecommendedReviews}% of the reviews recommend this product</p>
         <ProgressBra productInfo = {productInfo.results} bareValue= {bareValue} setBareValue= {setBareValue}/>
       </section>
+      <section className="flex-grow">
       <ProgressBarSorting  productInfo = {productInfo.results} bareValue= {bareValue} />
-      <section>
       </section>
       {/* <StarRating /> */}
    
     </div>
     </>
   );
+    
 }
 
 export default RatingsAndViews;
