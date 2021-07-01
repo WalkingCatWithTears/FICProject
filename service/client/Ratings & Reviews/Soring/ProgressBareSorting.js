@@ -9,6 +9,7 @@ import { ImCross } from 'react-icons/im';
 const ProgressBarSorting = (props) => {
     const [show, setShow] = useState(false)
     const [helpRate, setHelpRate] = useState('')
+    const [reviewId, setReviewId] = useState('')
     
     return (
         <>
@@ -50,7 +51,7 @@ const ProgressBarSorting = (props) => {
                 </div>
                 {show ? 
                 <div className="flex flex-grow-0 text-xs gap-1 pt-2"> 
-                <ImCross onClick={() => setShow(false)} />
+                <ImCross onClick={() =>{setShow(false); console.log(product.review_Id); } }/>
                 <div className="">
                 <label>Yes</label>
                 <input type="radio" className="form-radio h-2 w-2 text-orange-400" name="rate" value="1" onClick={() => setHelpRate(true)} />
