@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import ViewRatingStars from '../Ratings Stars/ViewRatingStars.js';
+import React, {useState, useEffect} from 'react'
+import moment from 'moment';
 import StarRatings from  'react-star-ratings';
-import moment from 'moment'
 import { FaCheck } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
 
 
-const ProgressBarSorting = (props) => {
-    const [show, setShow] = useState(false)
-    const [helpRate, setHelpRate] = useState('')
-    const [reviewId, setReviewId] = useState('')
-    
+const  Reviews = (props) => {
+   const {product} = props
+   const [show, setShow] = useState({status: false, id: ''})
+   const [helpRate, setHelpRate] = useState('')
+   const [reviewId, setReviewId] = useState('')
+
     return (
         <>
-        <div className="">
-        {props.bareValue && props.productInfo &&  props.productInfo.filter((products) => {
-            return products.rating === props.bareValue
-        }).map((product) => {
-            return (
-                <>
-                <div className=" pt-6 border-b-2 ">
+                <div className=" pt-6 border-b-2 " key ={product.product_id}>
                 <section className="flex justify-between">
                 { <StarRatings
                  className="flex test-xs"
                  isHalf={true}
-                 rating= {props.bareValue}
+                 rating= {product.rating}
                  edit={false}
                  starRatedColor="#ffc107"
                  starDimension="20px"
@@ -45,13 +39,13 @@ const ProgressBarSorting = (props) => {
                 </div>
                 </div> : ""}
                 <div className="flex text-xs pt-4 gap-1 text-gray-500">
-                 <span onClick={()=>setShow(true)}>Helpful?</span>
+                 <span onClick={()=>{setShow({status:true, id: product.review_id})}}>Helpful?</span>
                  <span className="underline">Yes{'('+ product.helpfulness + ')'} </span>
                  <span className="">|</span>  <span className="underline">Report</span>
                 </div>
-                {show ? 
+                {show.status && show.id ===product.review_id? 
                 <div className="flex flex-grow-0 text-xs gap-1 pt-2"> 
-                <ImCross onClick={() =>{setShow(false); console.log(product.review_Id); } }/>
+                <ImCross onClick={() =>{setShow({status: false}); if (helpRate) { setReviewId(product.review_id); } } }/>
                 <div className="">
                 <label>Yes</label>
                 <input type="radio" className="form-radio h-2 w-2 text-orange-400" name="rate" value="1" onClick={() => setHelpRate(true)} />
@@ -67,14 +61,7 @@ const ProgressBarSorting = (props) => {
                 </div>
                 </>
                 
-            )
-        })
-        
-        }
-        </div>
-        </>
-    )
-
+            )  
 }
 
-export default ProgressBarSorting;
+export default Reviews;

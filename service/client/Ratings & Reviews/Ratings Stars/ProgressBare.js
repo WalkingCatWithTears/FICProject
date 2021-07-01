@@ -26,9 +26,10 @@ const ProgressBra = (props) => {
            <input  
             type="radio" 
             name="star_rating" 
-            className="flex hidden " 
+            className="flex hidden" 
             value = {barValue}
-            onClick = {() => { props.setBareValue(barValue)}}
+            onClick = {() => { props.setBareValue(barValue);props.setAllBareValue(!props.allBareValue); if(barValue === props.bareValue) {props.setAllBareValue(!props.allBareValue); props.setBareValue("")}; 
+            }  }
            />
            <div  className= "flex justify-between gap-3 hover:text-red-500 "> 
            {ratingBar && <p className="text-sm underline ">{barValue} Stars</p> }

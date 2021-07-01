@@ -26,13 +26,33 @@ app.get(`/reviews/:product_id/`, (req, res) => {
     }
   })
   .then((response) => {
-    console.log(response.data)
+    // console.log(response.data)
     res.send(response.data)
   })
   .catch((error) => {
     console.error(error)
   })
 })
+
+
+app.put(`/reviews/:review_id/helpful`, (req, res) => {
+ const {review_id} = req.params
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/${review_id}/helpful`, {
+    headers: {
+      Authorization: process.env.GITHUB_TOKEN
+    }
+    
+  })
+  .then((response) => {
+    console.log('hhhhhhhhhhhh',response.data)
+    // res.send(response.data)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+
+})
+
 
 
 app.listen(port, () => {
