@@ -7,12 +7,13 @@ const ProgressBarSorting = (props) => {
     
     return (
         <>
+        <div className="grid grid-cols-1 divide-y divide-yellow-500">
         {props.bareValue && props.productInfo && props.productInfo.filter((products) => {
             return products.rating === props.bareValue
         }).map((product) => {
             return (
                 <>
-                <section className="flex">
+                <section className="flex justify-between">
                 { <StarRatings
                  className="flex test-xs"
                  isHalf={true}
@@ -22,18 +23,23 @@ const ProgressBarSorting = (props) => {
                  starDimension="20px"
                  starSpacing="2px"
                  />   }
-                 <span> {product.reviewer_name} {moment().format(product.date)}</span>
+                 <span> {product.reviewer_name}, {moment().format(product.date)}</span>
                 </section>
 
-                <section>
-
+                <section className="py-4">
+                <div>
+                <p>{product.summary}</p>
+                <p>{product.body}</p>
+                </div>
                 </section>
-
+                <div className=""></div>
                 </>
+                
             )
         })
         
         }
+        </div>
         </>
     )
 
