@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import ProgressBar from "@ramonak/react-progress-bar";
 import axios from 'axios';
+import { BsArrowReturnRight } from 'react-icons/bs';
+
 
 const ProgressBra = (props) => {
     const {value, status} = props.bareValue
     const [ratingBar, setRatingbar] = useState(null);
     const [counter, setcounter] = useState(0)
-    console.log(value, 'hi' , status);
+    console.log(ratingBar, 'hi' );
+    //To calculate the % of each bare
     const starPourcentage = () => {
         if (props.productInfo && !ratingBar) {
         let starPourcentage = {};
@@ -16,7 +19,7 @@ const ProgressBra = (props) => {
         }
     }
     starPourcentage()
-
+    
     return (
         <>
         {[...Array(5)].map((Bar, index) => {
@@ -30,11 +33,13 @@ const ProgressBra = (props) => {
             className="flex hidden" 
             value = {barValue}
             onClick = {() => { 
-            if (barValue === value) {props.setBareValue({value:barValue, status: !status})};
-            if (barValue !== value) {props.setBareValue({value:barValue, status: true})};
-            props.setAllBareValue(true); 
-            if(barValue === value ) {props.setAllBareValue(!props.allBareValue)}; 
-            }  }
+            if(ratingBar[barValue]) {
+              if (barValue === value) {props.setBareValue({value:barValue, status: !status})};
+              if (barValue !== value) {props.setBareValue({value:barValue, status: true})};
+              props.setAllBareValue(true); 
+              props.setActiveBareFilter(true)
+              if(barValue === value ) {props.setAllBareValue(!props.allBareValue); props.setActiveBareFilter(!props.allBareValue)}; 
+            }  }  }
            />
            <div  className= "flex justify-between gap-3 hover:text-red-500 "> 
            {ratingBar && <p className="text-sm underline ">{barValue} Stars</p> }
@@ -52,6 +57,7 @@ const ProgressBra = (props) => {
          </>
         )
         })}
+        {props.activeBareFilter? <div className="flex pt-1" onClick={()=> {props.setAllBareValue(false), props.setActiveBareFilter(false)}}>  <BsArrowReturnRight className=""/><span className="underline text-gray-500 text-xs ">Remove filters</span> </div>:''}
         </>
     )
 

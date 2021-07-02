@@ -41,11 +41,10 @@ app.put(`/reviews/:review_id/helpful`, (req, res) => {
     headers: {
       Authorization: process.env.GITHUB_TOKEN
     }
-    
   })
   .then((response) => {
-    console.log('hhhhhhhhhhhh')
-    // res.send(response.data)
+    console.log(response, 'hiuuu')
+    res.send(response.data)
   })
   .catch((error) => {
     console.error(error)

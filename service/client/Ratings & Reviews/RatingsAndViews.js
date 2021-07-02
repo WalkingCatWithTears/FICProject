@@ -13,14 +13,16 @@ function RatingsAndViews() {
     const [productInfo, setProductIOnf] = useState('')
     const [bareValue, setBareValue] = useState({value:'', status: false});
     const [allBareValue, setAllBareValue] = useState(false);
+    const [activeBareFilter, setActiveBareFilter] = useState(false)
 
-
+   // to get the reviews of a specefic product
     useEffect(() => {
         axios.get(`/reviews/${productId}`).then((result)=> {
           setProductIOnf(result.data)
         })
     }, [productId])
    
+    //to calculate the % of recommended 
     const pourcentageCalculator = () => {
       if(productInfo  && !pourcentage) {
         let add=0;
@@ -35,6 +37,7 @@ function RatingsAndViews() {
     }
     pourcentageCalculator()
 
+    //To render component according to the existence of filter 
     const renderComponent = (product) => {
       if(allBareValue === true) {
          if (product.rating === bareValue.value) {
@@ -45,6 +48,8 @@ function RatingsAndViews() {
       }
     }
    
+    // to update the setState of Remove Filter 
+  
   
     return (
     <> 
@@ -54,14 +59,17 @@ function RatingsAndViews() {
       <section className="pr-10"> 
         <ViewRatingStars productInfo = {productInfo.results}/>
         <p className="flex py-5 "> {(pourcentage*100)/countForPourcentage}% of the reviews recommend this product</p>
-        <ProgressBra productInfo = {productInfo.results} bareValue= {bareValue} setBareValue= {setBareValue} allBareValue={allBareValue} setAllBareValue={setAllBareValue}/>
+        <ProgressBra 
+        productInfo = {productInfo.results} 
+        bareValue= {bareValue} 
+        setBareValue= {setBareValue} 
+        allBareValue={allBareValue} 
+        setAllBareValue={setAllBareValue}
+        activeBareFilter={activeBareFilter}
+        setActiveBareFilter={setActiveBareFilter}
+        />
       </section>
       <section className="flex-grow">
-      {/* <ProgressBarSorting  
-      productInfo = {productInfo.results} 
-      bareValue= {bareValue} 
-      allBareValue= {allBareValue}
-      /> */}
       {productInfo ? <h1 className="font-semibold text-gray-600 text-lg flex gap-1">{productInfo.results.length} Reviews, sorted by <DropDown /></h1> : ''}
       {productInfo.results && productInfo.results.map((product) => {
            return (
