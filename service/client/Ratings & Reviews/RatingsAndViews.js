@@ -10,7 +10,7 @@ import Characteristics from './Characteristcs/Characteristics';
 function RatingsAndViews() {
     const [pourcentage, setPourcentage] = useState(0)
     const [countForPourcentage, setCountForPourcentage] = useState(1)
-    const [productId, setProductId] = useState(11001)
+    const [productId, setProductId] = useState(11003)
     const [productInfo, setProductIOnf] = useState('')
     const [bareValue, setBareValue] = useState({value:'', status: false});
     const [allBareValue, setAllBareValue] = useState(false);

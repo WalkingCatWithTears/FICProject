@@ -24,12 +24,19 @@ const Characteristics = (props) => {
              <>
              <p className="text-sm ">{reviewsMeta[index][0]}</p>       
              <div className="pb-4" >
-             <input className="w-full h-1 border-none outline-none bg-gray-400" type="range" min="1" max="5" value={4} />
-             <div className="flex justify-between text-xs"> 
-             <span>Poor</span>
+             <input className="w-full h-1 border-none outline-none bg-gray-300 appearance-none " type="range" min="1" max="5" value={Math.floor(reviewsMeta[index][1].value)} />
+             {reviewsMeta[index][0] === 'Comfort' || reviewsMeta[index][0] === 'Quality'  ? 
+             <div className="flex justify-between text-xs text-gray-500	"> 
+             { reviewsMeta[index][0] === 'Comfort'   ? <span>Uncomfortable</span> : <span>Poor</span>}
              <span>Perfect</span>
-             <span>Greet</span>
+             </div> :  
+             <div className="flex justify-between text-xs text-gray-500	"> 
+             {reviewsMeta[index][0]   === 'Length' ?<span>Runs Short</span> : <span>Runs tight</span>  }
+             <span>Perfect</span>
+             <span>Runs long</span>
              </div>
+            }
+            
              </div>
              </>
          )
