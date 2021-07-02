@@ -1,6 +1,5 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
-import NameOfTheService from "./NameOfTheService.jsx";
+import Overview from './Overview.jsx'
+import './index.css'
 
-window.NameOfTheService = NameOfTheService;
-// ReactDOM.render(<NameOfTheService />, document.getElementById("name-of-the-service"));
+
+ReactDOM.render(<Overview />, document.getElementById("overview-service"));
