@@ -3,6 +3,7 @@ import moment from 'moment';
 import StarRatings from  'react-star-ratings';
 import { FaCheck } from 'react-icons/fa';
 import { ImCross } from 'react-icons/im';
+import axios from 'axios';
 
 
 const  Reviews = (props) => {
@@ -10,6 +11,16 @@ const  Reviews = (props) => {
    const [show, setShow] = useState({status: false, id: ''})
    const [helpRate, setHelpRate] = useState('')
    const [reviewId, setReviewId] = useState('')
+    console.log(reviewId);
+    const updateHeplful = () => {
+        if (reviewId) {
+    axios.put(`/reviews/${reviewId}/helpful`)
+    .then((result) => {console.log('yes') })
+    .catch((err) => {console.log(err);})
+    }
+    }
+    useEffect(() => { updateHeplful() }) 
+    
 
     return (
         <>
@@ -45,7 +56,7 @@ const  Reviews = (props) => {
                 </div>
                 {show.status && show.id ===product.review_id? 
                 <div className="flex flex-grow-0 text-xs gap-1 pt-2"> 
-                <ImCross onClick={() =>{setShow({status: false}); if (helpRate) { setReviewId(product.review_id); } } }/>
+                <ImCross onClick={() =>{setShow({status: false}); if (helpRate) { setReviewId(product.review_id);}; product.helpfulness= product.helpfulness+1 } }/>
                 <div className="">
                 <label>Yes</label>
                 <input type="radio" className="form-radio h-2 w-2 text-orange-400" name="rate" value="1" onClick={() => setHelpRate(true)} />

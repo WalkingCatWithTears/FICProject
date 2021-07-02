@@ -44,7 +44,7 @@ app.put(`/reviews/:review_id/helpful`, (req, res) => {
     
   })
   .then((response) => {
-    console.log('hhhhhhhhhhhh',response.data)
+    console.log('hhhhhhhhhhhh')
     // res.send(response.data)
   })
   .catch((error) => {

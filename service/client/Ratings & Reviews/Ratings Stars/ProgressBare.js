@@ -3,9 +3,10 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import axios from 'axios';
 
 const ProgressBra = (props) => {
+    const {value, status} = props.bareValue
     const [ratingBar, setRatingbar] = useState(null);
     const [counter, setcounter] = useState(0)
-
+    console.log(value, 'hi' , status);
     const starPourcentage = () => {
         if (props.productInfo && !ratingBar) {
         let starPourcentage = {};
@@ -28,7 +29,11 @@ const ProgressBra = (props) => {
             name="star_rating" 
             className="flex hidden" 
             value = {barValue}
-            onClick = {() => { props.setBareValue(barValue);props.setAllBareValue(!props.allBareValue); if(barValue === props.bareValue) {props.setAllBareValue(!props.allBareValue); props.setBareValue("")}; 
+            onClick = {() => { 
+            if (barValue === value) {props.setBareValue({value:barValue, status: !status})};
+            if (barValue !== value) {props.setBareValue({value:barValue, status: true})};
+            props.setAllBareValue(true); 
+            if(barValue === value ) {props.setAllBareValue(!props.allBareValue)}; 
             }  }
            />
            <div  className= "flex justify-between gap-3 hover:text-red-500 "> 

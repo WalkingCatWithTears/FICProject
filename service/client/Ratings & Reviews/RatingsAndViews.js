@@ -11,7 +11,7 @@ function RatingsAndViews() {
     const [countForPourcentage, setCountForPourcentage] = useState(1)
     const [productId, setProductId] = useState(11001)
     const [productInfo, setProductIOnf] = useState('')
-    const [bareValue, setBareValue] = useState(null);
+    const [bareValue, setBareValue] = useState({value:'', status: false});
     const [allBareValue, setAllBareValue] = useState(false);
 
 
@@ -37,7 +37,7 @@ function RatingsAndViews() {
 
     const renderComponent = (product) => {
       if(allBareValue === true) {
-         if (product.rating === bareValue) {
+         if (product.rating === bareValue.value) {
            return <Reviews product = {product} />
          } 
       }else if (allBareValue === false) {
