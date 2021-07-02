@@ -5,6 +5,7 @@ import axios from 'axios';
 import ProgressBra from './Ratings Stars/ProgressBare.js';
 import Reviews from './Reviews/reviews.js';
 import DropDown from './SortdropDown/DrropDown.js';
+import Characteristics from './Characteristcs/Characteristics';
 
 function RatingsAndViews() {
     const [pourcentage, setPourcentage] = useState(0)
@@ -48,7 +49,6 @@ function RatingsAndViews() {
       }
     }
    
-    // to update the setState of Remove Filter 
   
   
     return (
@@ -68,6 +68,7 @@ function RatingsAndViews() {
         activeBareFilter={activeBareFilter}
         setActiveBareFilter={setActiveBareFilter}
         />
+        <Characteristics productId={productId} />
       </section>
       <section className="flex-grow">
       {productInfo ? <h1 className="font-semibold text-gray-600 text-lg flex gap-1">{productInfo.results.length} Reviews, sorted by <DropDown /></h1> : ''}

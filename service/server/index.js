@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 
-
+// get the reviews
 app.get(`/reviews/:product_id/`, (req, res) => {
   const {product_id} = req.params
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews`, {
@@ -34,10 +34,11 @@ app.get(`/reviews/:product_id/`, (req, res) => {
   })
 })
 
+//update the helfulness
 
 app.put(`/reviews/:review_id/helpful`, (req, res) => {
  const {review_id} = req.params
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/${review_id}/helpful`, {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/${review_id}/helpful`, {}, {
     headers: {
       Authorization: process.env.GITHUB_TOKEN
     }
@@ -50,6 +51,26 @@ app.put(`/reviews/:review_id/helpful`, (req, res) => {
     console.error(error)
   })
 
+})
+
+
+//get the review meda data
+app.get(`/reviews/meta/:product_id/`, (req, res) => {
+  const {product_id} = req.params
+  axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/meta`, {
+    headers: {
+      Authorization: process.env.GITHUB_TOKEN
+    },
+    params: {
+      product_id : product_id
+    }
+  })
+  .then((response) => {
+    res.send(response.data)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
 })
 
 
