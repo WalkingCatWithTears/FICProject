@@ -8,6 +8,16 @@ const AddReview = (props) => {
     const {addButton, setaddButton} = props
     const [popNumber, setpopNumber] = useState(1)
     const [bodyTextLenght, setBodyText] = useState(50)
+    const [nameInput, setNameInput] = useState('')
+    const [emailInput, setEmailInput] = useState('')
+    const [bodyInput, setBodyInput] = useState('')
+    const [summuryInput, setSummuryInput] = useState('')
+    const [recommendInput, setRecommendInput] = useState('')
+    const [ratingInput, setRatingInput] = useState('')
+    const [characteriticsInput, setCharacteriticsInput] = useState('')
+
+
+
 
     const toTheNextPage = () => {
       if (popNumber === 1) {
@@ -21,18 +31,18 @@ const AddReview = (props) => {
             <div class="mt-4">
               {/* {for the rating star} */}
               <h6 className="pb-3"> Overall rating* </h6>
-              <StarRating />
+              <StarRating  setRatingInput={setRatingInput}/>
             </div>
             <div class="mt-4">
               {/* {to recommend the product} */}
             <h6 className="pb-3">Do you recommend the product ?*</h6>
             <div className="flex gap-2">
              <div className="flex">
-              <input type='radio' name="recommend" value={true} />
+              <input type='radio' name="recommend" value={true}  onChange={(event)=> { setRecommendInput(event.target.value)}}/>
               <label ><AiOutlineLike /></label>
              </div>
              <div className="flex">
-              <input type='radio' name="recommend" value={false} />
+              <input type='radio' name="recommend" value={false} onChange={(event)=> { setRecommendInput(event.target.value)}}/>
               <label ><AiOutlineDislike /></label>
              </div>
             </div>
@@ -45,7 +55,7 @@ const AddReview = (props) => {
         <div class="mt-4 justify-items-center">
         {/* {to recommend the product} */}
         <h6 className="pb-3">Characteristics* </h6>
-        <ChooseCharacteristics />
+        <ChooseCharacteristics setCharacteriticsInput={setCharacteriticsInput} />
  
         </div>
         </>
@@ -57,9 +67,9 @@ const AddReview = (props) => {
         <div>
         <form>
         <h6 className="pb-4 pt-4"> Review summary</h6>
-        <textarea required="" name="message"   maxlength="60" className=" min-h-[100px] max-h-[300px] h-15  w-96 appearance-none block bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4" placeholder="Example: Best purchase ever!" spellcheck="false"></textarea>
-        <h6 className="pb-4 pt-4"> Review summary*</h6>
-        <textarea required="" name="message" minlength="50"  maxlength="1000" className=" min-h-[100px] max-h-[300px] h-28 w-96 appearance-none block bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4" placeholder="Why did you like the product or not?" spellcheck="false" onChange={(event) =>{if(bodyTextLenght >0){setBodyText(bodyTextLenght - 1)}}}></textarea>
+        <textarea required="" name="message"   maxlength="60" className=" min-h-[100px] max-h-[300px] h-15  w-96 appearance-none block bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4" placeholder="Example: Best purchase ever!" spellcheck="false" onChange={(event) =>{setSummuryInput(event.target.value)}}></textarea>
+        <h6 className="pb-4 pt-4"> Review body*</h6>
+        <textarea required="" name="message" minlength="50"  maxlength="1000" className=" min-h-[100px] max-h-[300px] h-28 w-96 appearance-none block bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg  py-4 px-4" placeholder="Why did you like the product or not?" spellcheck="false" onChange={(event) =>{if(bodyTextLenght >0){setBodyText(bodyTextLenght - 1)}; setBodyInput(event.target.value)}}></textarea>
         {bodyTextLenght !==0 ?<p class="text-xs text-gray-400 text-left my-3">Minimum required characters left: {bodyTextLenght}</p> : <p class="text-xs text-gray-400 text-left my-3">Minimum reached</p>}
         </form>
         </div>
@@ -76,11 +86,10 @@ const AddReview = (props) => {
         <div>
         <form>
         <h6 className="pb-4 pt-4"> What is your nickname*</h6>
-        <input type='text' maxlength="60" placeholder="Example: jackson11!" class="w-full mt-2 mb-2 px-6 py-3 border rounded-lg text-lg text-gray-700 focus:outline-none" />
+        <input type='text' onChange={(event) =>{setNameInput(event.target.value)}} maxlength="60" placeholder="Example: jackson11!" class="w-full mt-2 mb-2 px-6 py-3 border rounded-lg text-lg text-gray-700 focus:outline-none" />
         <p class="text-xs text-gray-400 text-left ">For privacy reasons, do not use your full name or email address</p>
-
         <h6 className="pb-4 pt-4"> Your email*</h6>
-        <input type='text' maxlength="60" placeholder="Example: jackson11@email.com" class="w-full mt-2 mb-2 px-6 py-3 border rounded-lg text-lg text-gray-700 focus:outline-none" />
+        <input type='text'  onChange={(event) =>{setEmailInput(event.target.value)}} maxlength="60" placeholder="Example: jackson11@email.com" class="w-full mt-2 mb-2 px-6 py-3 border rounded-lg text-lg text-gray-700 focus:outline-none" />
         <p class="text-xs text-gray-400 text-left ">For privacy reasons, do not use your full name or email address</p>
         </form>
         </div>)

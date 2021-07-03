@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-
-const ChooseCharacteristics =() =>{ 
+const ChooseCharacteristics =(props) =>{ 
+    const {setCharacteriticsInput} = props
     const [type, setDescription] = useState({description: '', title:'', index: 0})
     const allCharacteristics = [['Size', ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide']], 
                                 ['Width', ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide']],
@@ -22,29 +22,39 @@ const ChooseCharacteristics =() =>{
               <h6> {element[0]}</h6>
         <div className="flex gap-2 "> 
          <label for="choice-1">
-			<input type="radio"name={element[0]} value={1}  onClick={() => { if (type.index !== type.index+1 && type.title!==element[0]){setDescription({description: element[1][0], index:type.index+1})}}}/>
+			<input type="radio"name={element[0]} value={1}  
+            onChange={(event)=> { setCharacteriticsInput(event.target.value)}}
+            onClick={() => { if (type.index !== type.index+1 && type.title!==element[0]){setDescription({description: element[1][0], index:type.index+1})}}}/>
 			<div className="text-xs"> 1 
 			</div>
             </label>
             <label for="choice-2">
-			<input type="radio"name={element[0]} value={2}  onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][1], index:type.index+1})}}}/>
+			<input type="radio"name={element[0]} value={2}  
+            onChange={(event)=> { setCharacteriticsInput(event.target.value)}}
+            onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][1], index:type.index+1})}}}/>
 			<div className="text-xs">  2				
 			</div>
             </label>
             <label for="choice-3">
-			<input type="radio"name={element[0]} value={3} onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][2], index:type.index+1})}}}/>
+			<input type="radio"name={element[0]} value={3} 
+            onChange={(event)=> { setCharacteriticsInput(event.target.value)}}
+            onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][2], index:type.index+1})}}}/>
 			<div className="text-xs">
 				3
 			</div>
             </label>
             <label for="choice-4">
-			<input type="radio"name={element[0]} value={4} onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][3], index:type.index+1})}}} />
+			<input type="radio"name={element[0]} value={4} 
+            onChange={(event)=> { setCharacteriticsInput(event.target.value)}}
+            onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][3], index:type.index+1})}}} />
 			<div className="text-xs">
 				4
 			</div>
             </label>
             <label for="choice-5">
-			<input type="radio"name={element[0]} value={5} onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][4], index:type.index+1})}}}/>
+			<input type="radio"name={element[0]} value={5} 
+            onChange={(event)=> { setCharacteriticsInput(event.target.value)}}
+            onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][4], index:type.index+1})}}}/>
 			<div className="text-xs">
 				5
 			</div>

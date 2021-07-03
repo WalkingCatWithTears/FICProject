@@ -25,7 +25,7 @@ const Characteristics = (props) => {
              <>
              <p className="text-sm ">{reviewsMeta[index][0]}</p>       
              <div className="pb-4" >
-             <input className="w-full h-1 border-none outline-none bg-gray-300 appearance-none " type="range" min="1" max="5" step="0.1"
+             <input className="w-full h-1 border-none outline-none bg-gray-300 appearance-none " type="range" min="1" max="5" step="0.1" 
              value={reviewsMeta[index][1].value} 
              />
 
