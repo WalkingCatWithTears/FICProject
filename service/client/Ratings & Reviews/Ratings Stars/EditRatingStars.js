@@ -16,7 +16,7 @@ const StarRating = () => {
                 <input  
                 type="radio" 
                 name="star_rating" 
-                className="flex " value={rateValue} 
+                className="flex hidden " value={rateValue} 
                 onClick= {() => setRating(rateValue)} 
                 />
                  <FaStar  

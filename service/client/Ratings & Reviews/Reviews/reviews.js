@@ -11,7 +11,6 @@ const  Reviews = (props) => {
    const [show, setShow] = useState({status: false, id: ''})
    const [helpRate, setHelpRate] = useState('')
    const [reviewId, setReviewId] = useState('')
-
    //to update the helpfulness
     const updateHeplful = () => {
         if (reviewId) {

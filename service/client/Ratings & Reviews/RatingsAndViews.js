@@ -6,6 +6,9 @@ import ProgressBra from './Ratings Stars/ProgressBare.js';
 import Reviews from './Reviews/reviews.js';
 import DropDown from './SortdropDown/DrropDown.js';
 import Characteristics from './Characteristcs/Characteristics';
+import AddReview from './AddReviwe/AddReview';
+
+
 
 function RatingsAndViews() {
     const [pourcentage, setPourcentage] = useState(0)
@@ -16,6 +19,9 @@ function RatingsAndViews() {
     const [allBareValue, setAllBareValue] = useState({sort:'relevant', startSort: false});
     const [activeBareFilter, setActiveBareFilter] = useState(false)
     const [dropDownValue, setDropDownValue] = useState('relevance')
+    const [addButton, setaddButton] = useState(true)
+    const [countReview, setCountReview] = useState(2)
+
 
    // to get the reviews of a specefic product
     useEffect(() => {
@@ -92,6 +98,13 @@ function RatingsAndViews() {
            
           }) 
         }
+      <div className="flex pt-4 ">
+      <button className="flex  gap-4 justify-center border-2 border-gray-500	w-60" onClick={() => {setaddButton(true)}}> <div className="flex pt-2 pb-2"><span className="">ADD A  REVIEW </span>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+      </svg></div></button> 
+      </div>
+      <AddReview addButton={addButton}  setaddButton={setaddButton} />
       </section>
       {/* <StarRating /> */}
    
@@ -106,27 +119,3 @@ export default RatingsAndViews;
 
 
 
-// {productInfo.results && allBareValue!==true && allBareValue!== false&&  productInfo.results.sort((a,b) => {
-//   if (allBareValue === "newest") {
-//     return new Date(b.date) - new Date(a.date)
-//   } else if (allBareValue === "helful") {
-//        if (a.helpfulness > b.helpfulness) return -1;
-//   } else if (allBareValue === "relevance") {
-//     if(new Date(b.date) - new Date(a.date)) return -1
-//     if (a.helpfulness > b.helpfulness) return -1; 
-//   }
-// }).map((element) => {
-//   return (
-//     <>
-//     {morePreciseRender(element)}
-//     </>
-//   )
-// }) }
-// {productInfo.results && allBareValue === true && productInfo.results.map((product) => {
-//    return (
-//      <>
-//      {renderComponent(product)}
-//     </>
-//    )
-//   }) 
-// }
