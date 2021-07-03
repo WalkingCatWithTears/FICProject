@@ -9,12 +9,13 @@ import Characteristics from './Characteristcs/Characteristics';
 
 function RatingsAndViews() {
     const [pourcentage, setPourcentage] = useState(0)
-    const [countForPourcentage, setCountForPourcentage] = useState(1)
-    const [productId, setProductId] = useState(11003)
+    const [countForPourcentage, setCountForPourcentage] = useState(0)
+    const [productId, setProductId] = useState(11001)
     const [productInfo, setProductIOnf] = useState('')
     const [bareValue, setBareValue] = useState({value:'', status: false});
     const [allBareValue, setAllBareValue] = useState(false);
     const [activeBareFilter, setActiveBareFilter] = useState(false)
+    const [dropDownValue, setDropDownValue] = useState('relevance')
 
    // to get the reviews of a specefic product
     useEffect(() => {
@@ -22,10 +23,12 @@ function RatingsAndViews() {
           setProductIOnf(result.data)
         })
     }, [productId])
+
+    console.log(productInfo);
    
     //to calculate the % of recommended 
     const pourcentageCalculator = () => {
-      if(productInfo  && !pourcentage) {
+      if(productInfo  && !countForPourcentage) {
         let add=0;
         setCountForPourcentage(productInfo.results.length)
         productInfo.results.map((element) => {
@@ -39,16 +42,23 @@ function RatingsAndViews() {
     pourcentageCalculator()
 
     //To render component according to the existence of filter 
-    const renderComponent = (product) => {
+    const renderComponent = (product, index) => {
       if(allBareValue === true) {
          if (product.rating === bareValue.value) {
            return <Reviews product = {product} />
          } 
       }else if (allBareValue === false) {
         return <Reviews product={product} />
+      }else {
+        return 
       }
     }
    
+    const morePreciseRender = (element) => {
+      if (allBareValue !== true || allBareValue !==false) {
+          return <Reviews product = {element}/> 
+      }
+    }
   
   
     return (
@@ -71,15 +81,34 @@ function RatingsAndViews() {
         <Characteristics productId={productId} />
       </section>
       <section className="flex-grow">
-      {productInfo ? <h1 className="font-semibold text-gray-600 text-lg flex gap-1">{productInfo.results.length} Reviews, sorted by <DropDown /></h1> : ''}
+      {productInfo ? <h1 className="font-semibold text-gray-600 text-lg flex gap-1">{productInfo.results.length} Reviews, sorted by <DropDown  value= {dropDownValue} handler = {setDropDownValue}  setAllBareValue={setAllBareValue}/></h1> : ''}
       {productInfo.results && productInfo.results.map((product) => {
            return (
              <>
              {renderComponent(product)}
             </>
            )
-      })}
-      
+          }) 
+        }
+      {productInfo.results && allBareValue!==true && allBareValue!== false&&  productInfo.results.sort((a,b) => {
+          if (allBareValue === "newest") {
+            return new Date(b.date) - new Date(a.date)
+          } else if (allBareValue === "helful") {
+             	if (a.helpfulness > b.helpfulness) return -1;
+          } else if (allBareValue === "relevance") {
+            if(new Date(b.date) - new Date(a.date)) return -1
+            if (a.helpfulness > b.helpfulness) return -1; 
+          }
+        }).map((element) => {
+          return (
+            <>
+            {morePreciseRender(element)}
+            </>
+          )
+        })
+        
+        
+        }
       </section>
       {/* <StarRating /> */}
    

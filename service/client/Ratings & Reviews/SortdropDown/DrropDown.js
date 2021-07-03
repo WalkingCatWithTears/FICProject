@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 
-const DropDown = () => {
-const [dropDown, setDropDown] = useState(false)
-
+const DropDown = (props) => {
+    const [dropDown, setDropDown] = useState(false)
+    const {value, handler,setAllBareValue} = props
     return (
         
         <div className="flex">
-        <h1 className="font-semibold text-gray-600 text-lg underline">relevance</h1>
+        <h1 className="font-semibold text-gray-600 text-lg underline">{value}</h1>
         <div className="flex">
         <div  className="relative " onClick={() => setDropDown(!dropDown)}>
         <button onClick={()=> setDropDown(!dropDown)} className="relative z-10 block rounded-md bg-white p-2 focus:outline-none">
@@ -16,12 +16,15 @@ const [dropDown, setDropDown] = useState(false)
         </button>
         {dropDown ?  
         <>
-        <div  className="fixed inset-0  z-10 border-2"></div>
-         <div x-show="dropdownOpen" onClick= {() => {setDropDown(false)}}className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md  z-20">
-         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white">
+        <div  className="fixed inset-0  z-10 "></div>
+         <div x-show="dropdownOpen" onClick= {() => {setDropDown(false)}}className="absolute right-0 mt-2 py-2 w-48 bg-white  z-20 	">
+         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('relevance'); setAllBareValue('relevance')}}>
+         relevance
+         </a>
+         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('helful'); setAllBareValue('helful')}} >
              helful
          </a>
-         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white">
+         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('newest'); setAllBareValue('newest')}}>
              newest
         </a>
       

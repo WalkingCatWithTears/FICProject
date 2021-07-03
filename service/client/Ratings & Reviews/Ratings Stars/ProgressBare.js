@@ -8,7 +8,7 @@ const ProgressBra = (props) => {
     const {value, status} = props.bareValue
     const [ratingBar, setRatingbar] = useState(null);
     const [counter, setcounter] = useState(0)
-    console.log(ratingBar, 'hi' );
+
     //To calculate the % of each bare
     const starPourcentage = () => {
         if (props.productInfo && !ratingBar) {
@@ -57,7 +57,7 @@ const ProgressBra = (props) => {
          </>
         )
         })}
-        {props.activeBareFilter? <div className="flex pt-1" onClick={()=> {props.setAllBareValue(false), props.setActiveBareFilter(false)}}>  <BsArrowReturnRight className=""/><span className="underline text-gray-500 text-xs ">Remove filters</span> </div>:''}
+        {props.activeBareFilter? <div className="flex pt-1 cursor-pointer" onClick={()=> {props.setAllBareValue(false), props.setActiveBareFilter(false)}}>  <BsArrowReturnRight className=""/><span className="underline text-gray-500 text-xs ">Remove filters</span> </div>:''}
         </>
     )
 
