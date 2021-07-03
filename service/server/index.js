@@ -15,14 +15,15 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 // get the reviews
-app.get(`/reviews/:product_id/`, (req, res) => {
-  const {product_id} = req.params
+app.get(`/reviews/:product_id/:sort`, (req, res) => {
+  const {product_id,sort} = req.params
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews`, {
     headers: {
       Authorization: process.env.GITHUB_TOKEN
     },
     params: {
-      product_id : product_id
+      product_id : product_id,
+      sort: sort,
     }
   })
   .then((response) => {

@@ -36,9 +36,10 @@ const ProgressBra = (props) => {
             if(ratingBar[barValue]) {
               if (barValue === value) {props.setBareValue({value:barValue, status: !status})};
               if (barValue !== value) {props.setBareValue({value:barValue, status: true})};
-              props.setAllBareValue(true); 
+              //to sort the reviews by stars
+              props.setAllBareValue({sort: props.allBareValue.sort, startSort: true}); 
               props.setActiveBareFilter(true)
-              if(barValue === value ) {props.setAllBareValue(!props.allBareValue); props.setActiveBareFilter(!props.allBareValue)}; 
+              if(barValue === value ) {props.setAllBareValue({sort: props.allBareValue.sort, startSort: false}); props.setActiveBareFilter(!props.allBareValue.startSort)}; 
             }  }  }
            />
            <div  className= "flex justify-between gap-3 hover:text-red-500 "> 
@@ -57,7 +58,7 @@ const ProgressBra = (props) => {
          </>
         )
         })}
-        {props.activeBareFilter? <div className="flex pt-1 cursor-pointer" onClick={()=> {props.setAllBareValue(false), props.setActiveBareFilter(false)}}>  <BsArrowReturnRight className=""/><span className="underline text-gray-500 text-xs ">Remove filters</span> </div>:''}
+        {props.activeBareFilter? <div className="flex pt-1 cursor-pointer" onClick={()=> {props.setAllBareValue({sort: props.allBareValue.sort, startSort: false}), props.setActiveBareFilter(false)}}>  <BsArrowReturnRight className=""/><span className="underline text-gray-500 text-xs ">Remove filters</span> </div>:''}
         </>
     )
 
