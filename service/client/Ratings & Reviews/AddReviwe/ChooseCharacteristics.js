@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 
 const ChooseCharacteristics =() =>{ 
+    const [type, setDescription] = useState({description: '', title:'', index: 0})
     const allCharacteristics = [['Size', ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide']], 
                                 ['Width', ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide']],
                                 ['Comfort', ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect']],
@@ -10,45 +12,56 @@ const ChooseCharacteristics =() =>{
                                 
 
     return (
-        <div>
-        { allCharacteristics.map((element) => {
+        <div >
+        <div className="grid grid-cols-6">
+		<span className="flex text-xs col-start-3 col-end-6 ">{type.description}</span>
+        </div>
+        {allCharacteristics.map((element) => {
             return ( <>
+            <div className="grid grid-cols-3">
               <h6> {element[0]}</h6>
         <div className="flex gap-2 "> 
          <label for="choice-1">
-			<input type="radio"name="choice" value={1} />
-			<div> 1
-				{/* <span>{element[0][0]}</span> */}
+			<input type="radio"name={element[0]} value={1}  onClick={() => { if (type.index !== type.index+1 && type.title!==element[0]){setDescription({description: element[1][0], index:type.index+1})}}}/>
+			<div className="text-xs"> 1 
 			</div>
             </label>
             <label for="choice-2">
-			<input type="radio"name="choice" value={2} />
-			<div>  2				
-                {/* <span>{element[0][1]}</span> */}
+			<input type="radio"name={element[0]} value={2}  onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][1], index:type.index+1})}}}/>
+			<div className="text-xs">  2				
 			</div>
             </label>
             <label for="choice-3">
-			<input type="radio"name="choice" value={3} />
-			<div>
+			<input type="radio"name={element[0]} value={3} onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][2], index:type.index+1})}}}/>
+			<div className="text-xs">
 				3
-				{/* <span>{element[0][2]}</span> */}
 			</div>
             </label>
             <label for="choice-4">
-			<input type="radio"name="choice" value={4} />
-			<div>
+			<input type="radio"name={element[0]} value={4} onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][3], index:type.index+1})}}} />
+			<div className="text-xs">
 				4
-				{/* <span>{element[0][3]}</span> */}
 			</div>
             </label>
             <label for="choice-5">
-			<input type="radio"name="choice" value={5} />
-			<div>
+			<input type="radio"name={element[0]} value={5} onClick={() => { if (type.index !== type.index +1){setDescription({description: element[1][4], index:type.index+1})}}}/>
+			<div className="text-xs">
 				5
-				{/* <span>{element[0][4]}</span> */}
 			</div>
             </label>
-        </div> </>) })  }</div>
+        </div> 
+         </div></>) })  }
+        <section className="text-xs ">
+            <p>Descriotion :</p>
+            <div><span>{'Quality : (1)Poor  (5)Perfect'}</span></div>
+            <div><span>{'Fit : (1)Runs tight  (5)Runs long'}</span></div>
+            <div><span>{'Width : (1)Too narrow  (5)Too wide'}</span></div>
+            <div><span>{'Length : (1)Runs Short  (5)Runs long'}</span></div>
+            <div><span>{'Confort : (1)Uncomfortable  (5)Perfect'}</span></div>
+            <div><span>{'Size : (1)A size too small  (5)A size too wide'}</span></div>
+        </section>
+        
+        </div>
     )
 }
 
