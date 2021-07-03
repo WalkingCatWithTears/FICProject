@@ -48,23 +48,27 @@ function RatingsAndViews() {
     pourcentageCalculator()
 
     //To render component according to the existence of filter 
-    const renderComponent = (product, index) => {
-      if(allBareValue === true) {
-         if (product.rating === bareValue.value) {
-           return <Reviews product = {product} />
-         } 
-      }else {
-        return 
-      }
-    }
+    // const renderComponent = (product, index) => {
+    //   if(allBareValue === true) {
+    //      if (product.rating === bareValue.value) {
+    //        return <Reviews product = {product} />
+    //      } 
+    //   }else {
+    //     return 
+    //   }
+    // }
    
-    const morePreciseRender = (element) => {
-      if (allBareValue !== true || allBareValue !==false) {
-          return <Reviews product = {element}/> 
-      }
+    // const morePreciseRender = (element) => {
+    //   if (allBareValue !== true || allBareValue !==false) {
+    //       return <Reviews product = {element}/> 
+    //   }
+    // }
+   
+    // For the view more reviews button 
+    const couterViews = () => {
+      setCountReview(countReview + 2)
     }
-  
-  
+
     return (
     <> 
  
@@ -90,15 +94,18 @@ function RatingsAndViews() {
         {productInfo.results && productInfo.results.map((product) => {
           if(allBareValue.startSort) {
             if (product.rating === bareValue.value) {
+            if (productInfo.results.indexOf(product) >=countReview) {return }
               return <Reviews product = {product} />
             }
           } else if (!allBareValue.startSort) {
+            if (productInfo.results.indexOf(product) >=countReview) {return }
             return <Reviews product = {product} />
           }
            
           }) 
         }
-      <div className="flex pt-4 ">
+      <div className="flex pt-6 gap-3">
+       {productInfo &&productInfo.results.length >2 && countReview < productInfo.results.length? <button onClick={()=>couterViews()} className="flex justify-center border-2 border-gray-500	w-40"> <span  className="flex pt-2 pb-2">MORE REVIEWS</span></button> : '' }
       <button className="flex  gap-4 justify-center border-2 border-gray-500	w-60" onClick={() => {setaddButton(true)}}> <div className="flex pt-2 pb-2"><span className="">ADD A  REVIEW </span>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

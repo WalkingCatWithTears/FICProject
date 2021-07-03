@@ -40,8 +40,9 @@ const  Reviews = (props) => {
 
                 <section className="py-4 ">
                 <div>
-                <p className="font-semibold text-gray-600 pb-4 text-lg">{product.summary}</p>
-                <p>{product.body}</p>
+                { product.summary ? <p className="font-semibold text-gray-600 pb-4 text-lg">{product.summary}</p>: ''}
+                {/* {not finished for the button show more} */}
+                {product.body && product.body.length <250 ? <p>{product.body}</p>  : <div className="flex gap-3"><p>{product.body.slice(0,250)}</p> <span className="bg-gray-400 text-xs underline">Show more</span></div>}
                 {product.recommend?   <div className="flex gap-2 pt-6"> <div className="py-1"><FaCheck /></div><p >I recommend this project</p> </div>: ""}
                 { true ? <div className="pt-6">
                 <div className="bg-gray-200 ">
@@ -56,7 +57,7 @@ const  Reviews = (props) => {
                 </div>
                 {show.status && show.id ===product.review_id? 
                 <div className="flex flex-grow-0 text-xs gap-1 pt-2"> 
-                <ImCross onClick={() =>{setShow({status: false}); if (helpRate) { setReviewId(product.review_id);}; product.helpfulness= product.helpfulness+1 } }/>
+                <ImCross onClick={() =>{setShow({status: false}); if (helpRate) { setReviewId(product.review_id); product.helpfulness= product.helpfulness+1};  } }/>
                 <div className="">
                 <label>Yes</label>
                 <input type="radio" className="form-radio h-2 w-2 text-orange-400" name="rate" value="1" onClick={() => setHelpRate(true)} />

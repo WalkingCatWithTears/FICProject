@@ -51,7 +51,7 @@ const AddReview = (props) => {
             <div class="mt-4">
             <h6 className="pb-2">Characteristics</h6>
              <div>
-            <ChooseCharacteristics />
+            {/* <ChooseCharacteristics /> */}
 
 
              </div>
