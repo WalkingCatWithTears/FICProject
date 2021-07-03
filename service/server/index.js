@@ -56,14 +56,16 @@ app.put(`/reviews/:review_id/helpful`, (req, res) => {
 
 
 //get the review meda data
-app.get(`/reviews/meta/:product_id/`, (req, res) => {
+app.get(`/reviews/meta/:product_id/:sort/`, (req, res) => {
   const {product_id} = req.params
+  console.log(product_id);
   axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/meta`, {
     headers: {
       Authorization: process.env.GITHUB_TOKEN
     },
     params: {
-      product_id : product_id
+      product_id : product_id,
+      sort: 'relevant',
     }
   })
   .then((response) => {

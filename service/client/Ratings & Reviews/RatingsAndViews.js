@@ -5,7 +5,7 @@ import axios from 'axios';
 import ProgressBra from './Ratings Stars/ProgressBare.js';
 import Reviews from './Reviews/reviews.js';
 import DropDown from './SortdropDown/DrropDown.js';
-// import Characteristics from './Characteristcs/Characteristics';
+import Characteristics from './Characteristcs/Characteristics';
 
 function RatingsAndViews() {
     const [pourcentage, setPourcentage] = useState(0)
@@ -66,7 +66,7 @@ function RatingsAndViews() {
     <div className="flex px-16 py-3 justify-between ">
       <section className="pr-10"> 
         <ViewRatingStars productInfo = {productInfo.results}/>
-        <p className="flex py-5 "> {(pourcentage*100)/countForPourcentage}% of the reviews recommend this product</p>
+        <p className="flex py-5 "> {Math.floor((pourcentage*100)/countForPourcentage)}% of the reviews recommend this product</p>
         <ProgressBra 
         productInfo = {productInfo.results} 
         bareValue= {bareValue} 
@@ -76,7 +76,7 @@ function RatingsAndViews() {
         activeBareFilter={activeBareFilter}
         setActiveBareFilter={setActiveBareFilter}
         />
-        {/* <Characteristics productId={productId} /> */}
+        <Characteristics productId={productId} />
       </section>
       <section className="flex-grow">
       {productInfo ? <h1 className="font-semibold text-gray-600 text-lg flex gap-1">{productInfo.results.length} Reviews, sorted by <DropDown  value= {dropDownValue} handler = {setDropDownValue}  setAllBareValue={setAllBareValue} allBareValue={allBareValue}/></h1> : ''}

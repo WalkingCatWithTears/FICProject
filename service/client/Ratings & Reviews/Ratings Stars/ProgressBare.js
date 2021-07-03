@@ -39,7 +39,7 @@ const ProgressBra = (props) => {
               //to sort the reviews by stars
               props.setAllBareValue({sort: props.allBareValue.sort, startSort: true}); 
               props.setActiveBareFilter(true)
-              if(barValue === value ) {props.setAllBareValue({sort: props.allBareValue.sort, startSort: false}); props.setActiveBareFilter(!props.allBareValue.startSort)}; 
+              if(barValue === value ) {props.setAllBareValue({sort: props.allBareValue.sort, startSort: !props.allBareValue.startSort}); props.setActiveBareFilter(!props.allBareValue.startSort)}; 
             }  }  }
            />
            <div  className= "flex justify-between gap-3 hover:text-red-500 "> 
@@ -58,6 +58,7 @@ const ProgressBra = (props) => {
          </>
         )
         })}
+        {/* {to remove the all the star filter} */}
         {props.activeBareFilter? <div className="flex pt-1 cursor-pointer" onClick={()=> {props.setAllBareValue({sort: props.allBareValue.sort, startSort: false}), props.setActiveBareFilter(false)}}>  <BsArrowReturnRight className=""/><span className="underline text-gray-500 text-xs ">Remove filters</span> </div>:''}
         </>
     )
