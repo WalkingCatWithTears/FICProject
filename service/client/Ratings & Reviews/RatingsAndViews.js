@@ -13,7 +13,7 @@ import AddReview from './AddReviwe/AddReview';
 function RatingsAndViews() {
     const [pourcentage, setPourcentage] = useState(0)
     const [countForPourcentage, setCountForPourcentage] = useState(0)
-    const [productId, setProductId] = useState(11015)
+    const [productId, setProductId] = useState(11001)
     const [productInfo, setProductIOnf] = useState('')
     const [bareValue, setBareValue] = useState({value:'', status: false});
     const [allBareValue, setAllBareValue] = useState({sort:'relevant', startSort: false});

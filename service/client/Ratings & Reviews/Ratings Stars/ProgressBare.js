@@ -43,16 +43,18 @@ const ProgressBra = (props) => {
               if(barValue === value ) {props.setAllBareValue({sort: props.allBareValue.sort, startSort: !props.allBareValue.startSort}); props.setActiveBareFilter(!props.allBareValue.startSort)}; 
             }  }  }
            />
-           <div  className= "flex justify-between gap-3 hover:text-red-500 "> 
-           {ratingBar && <p className="text-xs underline ">{barValue} Stars</p> }
+           <div  className= "flex justify-between hover:text-red-500 "> 
+           {ratingBar && <p className="text-xs underline " style = {{width:"3.2rem"}}>{barValue} Stars</p> }
            { ratingBar && <ProgressBar
             className="py-2 "
             completed={ratingBar && ratingBar[barValue] ? ((ratingBar[barValue]*100)/counter) : 0} 
             bgColor = "#32CD32" 
             height = {10}
-            labelSize = {10}
+            labelSize = {8}
             width = {250}
             borderRadius = "0"
+            // labelAlignment	='right'
+            
          /> }
            </div>
           </label>
