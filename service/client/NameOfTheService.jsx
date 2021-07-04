@@ -45,4 +45,4 @@ const NameOfTheService = () => {
   );
 };
 
-export default NameOfTheService;
+ReactDOM.render(<NameOfTheService />, document.getElementById("name-of-the-service"));
