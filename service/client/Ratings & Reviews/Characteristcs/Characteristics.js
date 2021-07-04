@@ -3,9 +3,9 @@ import axios from 'axios';
 
 
 const Characteristics = (props) => {
-    const {productId} = props;
+    const {productId, setReviewsMeta, reviewsMeta} = props;
     const [value, onChange]=useState(1);
-    const [reviewsMeta, setReviewsMeta] = useState(null)
+    // const [reviewsMeta, setReviewsMeta] = useState(null)
     // to get the metadata for a given product.
     const getMetaData = () => {
         axios.get(`/reviews/meta/${productId}/${'relevant'}`).then((result) => {

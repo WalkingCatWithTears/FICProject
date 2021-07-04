@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const ChooseCharacteristics =(props) =>{ 
     const {setCharacteriticsInput,characteriticsInput} = props
-    console.log(props);
+    
     const [type, setDescription] = useState({description: '', title:'', index: 0})
     const allCharacteristics = [['Size', ['A size too small', '½ a size too small', 'Perfect', '½ a size too big', 'A size too wide']], 
                                 ['Width', ['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide']],

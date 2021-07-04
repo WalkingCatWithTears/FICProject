@@ -13,13 +13,14 @@ import AddReview from './AddReviwe/AddReview';
 function RatingsAndViews() {
     const [pourcentage, setPourcentage] = useState(0)
     const [countForPourcentage, setCountForPourcentage] = useState(0)
-    const [productId, setProductId] = useState(11001)
+    const [productId, setProductId] = useState(11015)
     const [productInfo, setProductIOnf] = useState('')
     const [bareValue, setBareValue] = useState({value:'', status: false});
     const [allBareValue, setAllBareValue] = useState({sort:'relevant', startSort: false});
     const [activeBareFilter, setActiveBareFilter] = useState(false)
     const [dropDownValue, setDropDownValue] = useState('relevance')
-    const [addButton, setaddButton] = useState(true)
+    const [reviewsMeta, setReviewsMeta] = useState(null)
+    const [addButton, setaddButton] = useState(false)
     //for the moreview button
     const [countReview, setCountReview] = useState(2)
 
@@ -31,7 +32,7 @@ function RatingsAndViews() {
         })
     }, [allBareValue])
 
-    console.log(productInfo);
+    
    
     //to calculate the % of recommended 
     const pourcentageCalculator = () => {
@@ -55,14 +56,15 @@ function RatingsAndViews() {
       setCountReview(countReview + 2)
     }
 
+    if (productInfo ) {
     return (
     <> 
  
     <h1 className="flex px-16 font-mono ">RATINGS & REVIEWS</h1>
-    <div className="flex px-16 py-3 justify-between ">
-      <section className="pr-10"> 
+    <div className="flex px-16 py-3 justify-between gap-12">
+      <section className=""> 
         <ViewRatingStars productInfo = {productInfo.results}/>
-        <p className="flex py-5 "> {Math.floor((pourcentage*100)/countForPourcentage)}% of the reviews recommend this product</p>
+        <p className="flex py-5 text-sm "> {Math.floor((pourcentage*100)/countForPourcentage)}% of the reviews recommend this product</p>
         <ProgressBra 
         productInfo = {productInfo.results} 
         bareValue= {bareValue} 
@@ -74,7 +76,7 @@ function RatingsAndViews() {
         setCountReview = {setCountReview}
         
         />
-        <Characteristics productId={productId} />
+        <Characteristics productId={productId} setReviewsMeta={setReviewsMeta}  reviewsMeta={reviewsMeta}/>
       </section>
       <section className="flex-grow">
       {productInfo ? <h1 className="font-semibold text-gray-600 text-lg flex gap-1">{productInfo.results.length} Reviews, sorted by 
@@ -112,7 +114,7 @@ function RatingsAndViews() {
    
     </div>
     </>
-  );
+  ); } else { return <p>Loading ...</p>}
     
 }
 

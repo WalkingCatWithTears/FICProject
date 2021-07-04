@@ -44,7 +44,7 @@ const ProgressBra = (props) => {
             }  }  }
            />
            <div  className= "flex justify-between gap-3 hover:text-red-500 "> 
-           {ratingBar && <p className="text-sm underline ">{barValue} Stars</p> }
+           {ratingBar && <p className="text-xs underline ">{barValue} Stars</p> }
            { ratingBar && <ProgressBar
             className="py-2 "
             completed={ratingBar && ratingBar[barValue] ? ((ratingBar[barValue]*100)/counter) : 0} 
