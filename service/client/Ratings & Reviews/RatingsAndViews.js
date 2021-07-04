@@ -20,6 +20,7 @@ function RatingsAndViews() {
     const [activeBareFilter, setActiveBareFilter] = useState(false)
     const [dropDownValue, setDropDownValue] = useState('relevance')
     const [addButton, setaddButton] = useState(true)
+    //for the moreview button
     const [countReview, setCountReview] = useState(2)
 
 
@@ -47,22 +48,7 @@ function RatingsAndViews() {
     }
     pourcentageCalculator()
 
-    //To render component according to the existence of filter 
-    // const renderComponent = (product, index) => {
-    //   if(allBareValue === true) {
-    //      if (product.rating === bareValue.value) {
-    //        return <Reviews product = {product} />
-    //      } 
-    //   }else {
-    //     return 
-    //   }
-    // }
-   
-    // const morePreciseRender = (element) => {
-    //   if (allBareValue !== true || allBareValue !==false) {
-    //       return <Reviews product = {element}/> 
-    //   }
-    // }
+  
    
     // For the view more reviews button 
     const couterViews = () => {
@@ -85,11 +71,20 @@ function RatingsAndViews() {
         setAllBareValue={setAllBareValue}
         activeBareFilter={activeBareFilter}
         setActiveBareFilter={setActiveBareFilter}
+        setCountReview = {setCountReview}
+        
         />
         <Characteristics productId={productId} />
       </section>
       <section className="flex-grow">
-      {productInfo ? <h1 className="font-semibold text-gray-600 text-lg flex gap-1">{productInfo.results.length} Reviews, sorted by <DropDown  value= {dropDownValue} handler = {setDropDownValue}  setAllBareValue={setAllBareValue} allBareValue={allBareValue}/></h1> : ''}
+      {productInfo ? <h1 className="font-semibold text-gray-600 text-lg flex gap-1">{productInfo.results.length} Reviews, sorted by 
+      <DropDown  
+      value= {dropDownValue} 
+      handler = {setDropDownValue}  
+      setAllBareValue={setAllBareValue} 
+      allBareValue={allBareValue} 
+      setCountReview={setCountReview}/>
+      </h1> : ''}
 
         {productInfo.results && productInfo.results.map((product) => {
           if(allBareValue.startSort) {

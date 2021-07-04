@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 
 const DropDown = (props) => {
+    const {setCountReview} = props
     const [dropDown, setDropDown] = useState(false)
     const {value, handler,setAllBareValue} = props
     return (
@@ -18,13 +19,13 @@ const DropDown = (props) => {
         <>
         <div  className="fixed inset-0  z-10 "></div>
          <div x-show="dropdownOpen" onClick= {() => {setDropDown(false)}}className="absolute right-0 mt-2 py-2 w-48 bg-white  z-20 	">
-         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('relevance'); setAllBareValue({sort:'relevant',startSort: props.allBareValue.startSort})}}>
+         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('relevance'); setAllBareValue({sort:'relevant',startSort: props.allBareValue.startSort}); setCountReview(2)}}>
          relevance
          </a>
-         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('helful'); setAllBareValue({sort:'helpful', startSort: props.allBareValue.startSort})}} >
+         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('helful'); setAllBareValue({sort:'helpful', startSort: props.allBareValue.startSort}); setCountReview(2)}} >
              helful
          </a>
-         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('newest'); setAllBareValue({sort:'newest', startSort: props.allBareValue.startSort})}}>
+         <a href="#" className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white" onClick={() => {handler('newest'); setAllBareValue({sort:'newest', startSort: props.allBareValue.startSort}); setCountReview(2)}}>
              newest
         </a>
       

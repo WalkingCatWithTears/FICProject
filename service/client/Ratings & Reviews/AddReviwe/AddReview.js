@@ -14,7 +14,7 @@ const AddReview = (props) => {
     const [summuryInput, setSummuryInput] = useState('')
     const [recommendInput, setRecommendInput] = useState('')
     const [ratingInput, setRatingInput] = useState('')
-    const [characteriticsInput, setCharacteriticsInput] = useState('')
+    const [characteriticsInput, setCharacteriticsInput] = useState({Size:'', Width:'',Comfort:'', Quality:'',Length:'',Fit:'' })
 
 
 
@@ -55,7 +55,7 @@ const AddReview = (props) => {
         <div class="mt-4 justify-items-center">
         {/* {to recommend the product} */}
         <h6 className="pb-3">Characteristics* </h6>
-        <ChooseCharacteristics setCharacteriticsInput={setCharacteriticsInput} />
+        <ChooseCharacteristics setCharacteriticsInput={setCharacteriticsInput}  characteriticsInput={characteriticsInput}/>
  
         </div>
         </>
