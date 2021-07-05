@@ -2,10 +2,11 @@ const axios = require("../apiService/api");
 
 const get = async (req, res) => {
   try {
+    console.log("hi")
     const response = await axios.get("/products");
     res.send(response.data);
   } catch (error) {
-    console.log(error);
+    console.log(error.response);
   }
 };
 
