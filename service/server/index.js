@@ -37,15 +37,15 @@ app.get(`/reviews/:product_id/:sort`, (req, res) => {
 
 //update the helfulness
 
-app.put(`/reviews/:review_id/helpful`, (req, res) => {
+app.put(`/reviews/:review_id/report`, (req, res) => {
  const {review_id} = req.params
-  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/${review_id}/helpful`, {}, {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/${review_id}/report`, {}, {
     headers: {
       Authorization: process.env.GITHUB_TOKEN
     }
   })
   .then((response) => {
-    console.log(response, 'hiuuu')
+    console.log(response, 'kllkjkljkl')
     res.send(response.data)
   })
   .catch((error) => {
@@ -75,6 +75,45 @@ app.get(`/reviews/meta/:product_id/:sort/`, (req, res) => {
     console.error(error)
   })
 })
+
+// post a review 
+app.post(`/reviews`, (req, res) => {
+  
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/`, req.body,{
+    headers: {
+      Authorization: process.env.GITHUB_TOKEN
+    },
+    
+  })
+  .then((response) => {
+    res.send(response.data)
+  })
+  .catch((error) => {
+    console.error(error)
+  })
+})
+
+//Report the review
+
+app.put(`/reviews/:review_id/helpful`, (req, res) => {
+  const {review_id} = req.params
+   axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc/reviews/${review_id}/helpful`, {}, {
+     headers: {
+       Authorization: process.env.GITHUB_TOKEN
+     }
+   })
+   .then((response) => {
+     console.log(response, 'hiuuu')
+     res.send(response.data)
+   })
+   .catch((error) => {
+     console.error(error)
+   })
+ 
+ })
+
+
+
 
 
 

@@ -4,28 +4,34 @@ import firebase from './FireBase.js'
 
 
   const UplodePhoto =(props) =>{
+
   const [imageInput, setImageInput] = useState([])
   const { setUrlInput,urlInput} = props
-  if (imageInput.length >0) {console.log(imageInput[0][0]);}
+  if (imageInput.length >0) {console.log(imageInput[1]);}
+  
   const fileUoloadHandler = () => {
     let bucketName = 'images'
-    let file = imageInput[0][0]
+    for ( var i =0; i<imageInput.length ; i++) {
+    let file = imageInput[i][0]
     let storageRef = firebase.storage().ref(`${bucketName}/${file.name}`)
     let uploadTask = storageRef.put(file)
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       ()=> {
         let downLoadUrl = uploadTask
       })
+    }
+    
   }
-  
+
+  //// needs to be fixed
   const showImage  = () => {
     let storageRef = firebase.storage().ref()
-    let spaceRef = storageRef.child('images/' + imageInput[0][0].name)
-    storageRef.child('images/'+ imageInput[0][0].name).getDownloadURL().then((url) => {
-      console.log(url);
-      // document.getElementById('new-img').src = url
-      setUrlInput(urlInput.concat([url]))
-    })
+    for (var i =0; i< imageInput.length; i++) {
+      let spaceRef = storageRef.child('images/' + imageInput[i][0].name)
+      storageRef.child('images/'+ imageInput[i][0].name).getDownloadURL().then((url) => {
+        setUrlInput(urlInput.concat([url]))
+      })
+    }   
   }
 
     return (
@@ -45,12 +51,13 @@ import firebase from './FireBase.js'
             </h1>
           {/* {url? <img id="new-img" src={url}  />  : ''} */}
             <ul id="gallery" className="flex flex-1 flex-wrap -m-1">
-               {!urlInput.length ? <li  className="h-full w-full text-center flex flex-col justify-center items-center">
+               {!urlInput.length ? <li  className="h-full w-full text-center flex flex-col justify-center items-center ">
                 <img className="mx-auto w-32" src="https://user-images.githubusercontent.com/507615/54591670-ac0a0180-4a65-11e9-846c-e55ffce0fe7b.png" alt="no data" />
                 <span className="text-small text-gray-500">No files selected</span>
               </li> : 
               <div className = "grid  grid-cols-5  md:grid-flow-col ...">
               {urlInput.map((url, index) => {
+                
                return ( <li key ={index}> <img src={url}  className="object-contain w-35"/></li>)
               })}</div>
               }

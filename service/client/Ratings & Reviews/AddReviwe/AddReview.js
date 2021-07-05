@@ -1,11 +1,13 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import StarRating from '../Ratings Stars/EditRatingStars'
 import { AiOutlineDislike, AiOutlineLike } from 'react-icons/ai';
 import ChooseCharacteristics from './ChooseCharacteristics.js';
 import UplodePhoto from './UplodePhoto.js';
+import axios from 'axios';
+import { bool } from 'prop-types';
 
 const AddReview = (props) => {
-    const {addButton, setaddButton} = props
+    const {addButton, setaddButton, reviewsMeta, productId} = props
     const [popNumber, setpopNumber] = useState(1)
     const [bodyTextLenght, setBodyText] = useState(50)
     const [nameInput, setNameInput] = useState('')
@@ -13,12 +15,40 @@ const AddReview = (props) => {
     const [bodyInput, setBodyInput] = useState('')
     const [summuryInput, setSummuryInput] = useState('')
     const [recommendInput, setRecommendInput] = useState('')
-    const [ratingInput, setRatingInput] = useState('')
-    const [characteriticsInput, setCharacteriticsInput] = useState({Size:'', Width:'',Comfort:'', Quality:'',Length:'',Fit:'' })
+    const [ratingInput, setRatingInput] = useState(0)
+    const [characteriticsInput, setCharacteriticsInput] = useState({Size:null, Width:null, Comfort:null, Quality:null, Length:null, Fit:null })
+    // to get the id of characteristics
+    const [characteristicsId, setCharactristicsId] = useState([])
     //For the post request 
     const [urlInput, setUrlInput] = useState([])
 
-
+  //   // for the post request
+    const handlePostRequest = () => {
+      let boolean = false;
+      if (recommendInput === "true") {
+        boolean = true;
+      }
+      let characteristicsStore = {}
+      reviewsMeta.map((element) =>{
+        if (characteriticsInput[element[0]]) {
+          characteristicsStore[`${element[1].id}`] = +characteriticsInput[element[0]]
+        }
+      })
+      let postObject = {
+        product_id: productId,
+        rating: +ratingInput,
+        summary: summuryInput,
+        body: bodyInput,
+        recommend: boolean,
+        name: nameInput,
+        email: emailInput,
+        photos: urlInput,
+        characteristics: characteristicsStore,
+    } 
+     axios.post('/reviews', postObject).then((result) => {
+       console.log(result);
+     })
+  }
         
     ///// pages in the addreview form 
     const toTheNextPage = () => {
@@ -63,6 +93,7 @@ const AddReview = (props) => {
         </>
         )
       } else if (popNumber === 3) {
+
         return (
         <div class="mt-4 justify-items-center">
         {/* {to Review summary and body} */}
@@ -95,7 +126,7 @@ const AddReview = (props) => {
         <p class="text-xs text-gray-400 text-left ">For privacy reasons, do not use your full name or email address</p>
         </form>
         </div>)
-      }
+      } 
     }
 
 
@@ -126,12 +157,12 @@ const AddReview = (props) => {
       <p class="text-xs text-red-500 text-right mr-2 my-3">Required fields are marked with anasterisk <abbr title="Required field">*</abbr></p>
       <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
         
-       {popNumber === 5 ?<button type="button" onClick={()=> {setpopNumber(1); if(popNumber!==-1) {setaddButton(false)}}} class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+       {popNumber === 5 ?<button type="button" onClick={()=> {setpopNumber(1); if(popNumber!==-1) {setaddButton(false)}; handlePostRequest()}} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
           Submit
-        </button> :<button type="button" onClick={()=> {setpopNumber(popNumber+1)}} class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+        </button> :<button type="button" onClick={()=> {setpopNumber(popNumber+1); }} class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
           Next
         </button> }
-        <button type="button"  class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={()=> {setaddButton(false); setpopNumber(1)}}>
+        <button type="button"  class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onClick={()=> {setaddButton(false); setpopNumber(1); setUrlInput([])}}>
           Cancel
         </button>
       </div>
