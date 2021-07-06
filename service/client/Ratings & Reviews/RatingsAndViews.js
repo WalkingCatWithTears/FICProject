@@ -15,7 +15,7 @@ import { Scrollbars } from 'react-custom-scrollbars-2';
 function RatingsAndViews() {
     const [pourcentage, setPourcentage] = useState(0)
     const [countForPourcentage, setCountForPourcentage] = useState(0)
-    const [productId, setProductId] = useState(11023)
+    const [productId, setProductId] = useState(11002)
     const [productInfo, setProductIOnf] = useState('')
     const [arrayOfproducts, setArrayOfproducts] = useState(null)
     const [bareValue, setBareValue] = useState({value:'', status: false});
