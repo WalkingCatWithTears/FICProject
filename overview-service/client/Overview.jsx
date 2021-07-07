@@ -1,4 +1,4 @@
-
+// import React from 'react'
 import "./index.css";
 import Info from "./components/Info.jsx";
 import Image from "./components/Image.jsx";
@@ -52,7 +52,7 @@ const NameOfTheService = () => {
   }
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full px-7">
       {loading ? null : <Image index={index} setIndex={setIndex} style={currentStyle.photos} />}
       <Info quantity={quantity} handleChange={handleChange} name={name} styles={styles} products={products} />
     </div>

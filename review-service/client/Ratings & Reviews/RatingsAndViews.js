@@ -112,7 +112,7 @@ function RatingsAndViews() {
         } 
         </Scrollbars>
       
-      <div className="flex pt-6 gap-3">
+      <div className="flex pt-6 gap-3 pb-20">
        {arrayOfproducts &&arrayOfproducts.length >2 && countReview < arrayOfproducts.length? <button onClick={()=>couterViews()} className="flex justify-center border-2 border-gray-500	w-40"> <span  className="flex pt-2 pb-2">MORE REVIEWS</span></button> : '' }
       <button className="flex  gap-4 justify-center border-2 border-gray-500	w-60" onClick={() => {setaddButton(true)}}> <div className="flex pt-2 pb-2"><span className="">ADD A  REVIEW </span>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
