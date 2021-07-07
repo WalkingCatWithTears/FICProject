@@ -20,7 +20,9 @@ export default function RelatedProducts(props) {
   };
 
   return (
-    <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+    <>
+    <h1 className="flex px-48 font-mono pt-11"> RELATED PRODUCTS</h1>
+    <div className="relative py-3 sm:max-w-full pl-60 pr-40 pt-11">
       <div className="flex flex-col bg-white m-auto p-auto">
         <div className="flex overflow-x-scroll pb-10 overflow-hidden  ">
           {props.relatedData.map((e) => (
@@ -60,6 +62,7 @@ export default function RelatedProducts(props) {
       </div>
 
       {toggleComparison()}
-    </div>
+    </div></>
   );
+  
 }

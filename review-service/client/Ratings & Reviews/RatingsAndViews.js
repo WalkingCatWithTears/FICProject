@@ -68,8 +68,8 @@ function RatingsAndViews() {
     return (
     <> 
  
-    <h1 className="flex px-16 font-mono ">RATINGS & REVIEWS</h1>
-    <div className="flex px-16 py-3 justify-between gap-12">
+    <h1 className="flex px-48 font-mono pt-11">RATINGS & REVIEWS</h1>
+    <div className="flex pl-48 py-3 justify-between gap-12 pr-36">
       <section className=""> 
         <ViewRatingStars productInfo = {productInfo.results}/> 
        <p className="flex py-5 text-sm "> {Math.floor((pourcentage*100)/countForPourcentage)}% of the reviews recommend this product</p> 

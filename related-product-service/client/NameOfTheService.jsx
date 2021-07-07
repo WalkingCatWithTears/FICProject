@@ -14,7 +14,7 @@ const NameOfTheService = () => {
 
   useEffect(() => {
     axios
-      .get("/api/products/11002/related")
+      .get("/api/products/11001/related")
       .then((result) => {
         setdata(result.data);
         

@@ -20,8 +20,10 @@ export default function YourOutfitList(props) {
   };
 
   return (
-    <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-      <div className="flex flex-col bg-white m-auto p-auto">
+    <>
+    <h1 className="flex px-48 font-mono pt-11 pr-2 "> YOUR OUTFIT</h1>
+    <div className="relative py-3 sm:max-w-full pl-60 pr-40 pt-11">
+      <div className="flex flex-col bg-white m-auto p-auto pt-11">
         <div className="flex overflow-x-scroll pb-10 overflow-hidden  ">
           {props.outfitsData.map((e) => (
             <div
@@ -60,6 +62,6 @@ export default function YourOutfitList(props) {
       </div>
 
       {toggleComparison()}
-    </div>
+    </div></>
   );
 }
